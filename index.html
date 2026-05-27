@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>新疆自驾团建行程地图</title>
+    <link rel="preconnect" href="https://unpkg.com" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="topbar" aria-label="页面导航">
+        <a href="#overview">概览</a>
+        <a href="#map-section">地图</a>
+        <a href="#daily">每日安排</a>
+        <a href="#checklist">注意事项</a>
+      </nav>
+      <section class="hero__content">
+        <p class="eyebrow">2026.6.19 - 6.27 · 上海出发</p>
+        <h1>新疆自驾团建行程地图</h1>
+        <p class="hero__lead">
+          乌鲁木齐进，喀什出，串联 S101、独库公路、塔克拉玛干沙漠公路和帕米尔高原。
+          页面中的里程和时间为团队自驾规划估算，实际以当天导航、交通管制和天气为准。
+        </p>
+        <div class="hero__actions">
+          <a class="button button--primary" href="#map-section">查看路线地图</a>
+          <a class="button button--ghost" href="#daily">看每日安排</a>
+        </div>
+      </section>
+    </header>
+
+    <main>
+      <section class="overview" id="overview" aria-labelledby="overview-title">
+        <div>
+          <p class="section-kicker">Route Summary</p>
+          <h2 id="overview-title">路线概览</h2>
+          <p>
+            这是一条强度偏高但景观层次很完整的线路。建议每车至少 2 名驾驶员，独库、沙漠公路和帕米尔段都避免夜间驾驶。
+            原计划中 D6 直接赶到莎车过于紧张，本版改为住和田/墨玉，D7 再到喀什。
+          </p>
+        </div>
+        <div class="stats-grid" aria-label="行程统计">
+          <article>
+            <span>9</span>
+            <p>天行程</p>
+          </article>
+          <article>
+            <span>约 2,900 km</span>
+            <p>自驾里程</p>
+          </article>
+          <article>
+            <span>约 45 h</span>
+            <p>纯驾驶时间</p>
+          </article>
+          <article>
+            <span>3 段</span>
+            <p>重点路况：独库 / 沙漠 / 高原</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="map-section" id="map-section" aria-labelledby="map-title">
+        <div class="map-copy">
+          <p class="section-kicker">Interactive Map</p>
+          <h2 id="map-title">实际路线地图</h2>
+          <p>
+            点击下方日期可单独查看当天路线。地图展示规划经过点和近似行车线路，适合团队会前讲解、分车沟通和当天复盘。
+          </p>
+          <div class="map-controls" id="map-controls" aria-label="地图筛选"></div>
+          <div class="selected-day" id="selected-day"></div>
+        </div>
+        <div class="map-shell">
+          <div id="route-map" aria-label="新疆自驾路线地图"></div>
+        </div>
+      </section>
+
+      <section class="daily" id="daily" aria-labelledby="daily-title">
+        <div class="section-heading">
+          <p class="section-kicker">Daily Plan</p>
+          <h2 id="daily-title">每日行程表</h2>
+        </div>
+        <div class="day-list" id="day-list"></div>
+      </section>
+
+      <section class="checklist" id="checklist" aria-labelledby="checklist-title">
+        <div>
+          <p class="section-kicker">Checklist</p>
+          <h2 id="checklist-title">驾驶及其他注意事项</h2>
+        </div>
+        <div class="checklist-grid">
+          <article>
+            <h3>证件与管制</h3>
+            <ul>
+              <li>独库公路每年季节性开放，出发前一天和当天早晨都要查交警/交通部门路况。</li>
+              <li>喀什前往白沙湖、喀拉库勒湖方向，建议提前办理边境管理区通行证。</li>
+              <li>租车订单、驾驶证、身份证、车辆保险、救援电话统一备份到团建群。</li>
+            </ul>
+          </article>
+          <article>
+            <h3>车辆与驾驶</h3>
+            <ul>
+              <li>每车至少 2 名司机，连续驾驶 2 小时左右换人或休息。</li>
+              <li>山区弯道、达坂、峡谷路段不超车抢行，车队保持可视距离即可。</li>
+              <li>沙漠公路和高原段出发前满油，备足饮用水和高热量零食。</li>
+            </ul>
+          </article>
+          <article>
+            <h3>天气与装备</h3>
+            <ul>
+              <li>六月新疆昼夜温差大，巴音布鲁克和喀湖方向需要冲锋衣或薄羽绒。</li>
+              <li>防晒霜、墨镜、帽子、润唇膏、保湿用品要随身，不要放在大箱底。</li>
+              <li>带晕车药、肠胃药、葡萄糖、氧气瓶，喀湖方向少跑跳少饮酒。</li>
+            </ul>
+          </article>
+          <article>
+            <h3>团队协同</h3>
+            <ul>
+              <li>每天出发前确认车队编号、驾驶员、乘客、集合点和下一站停车点。</li>
+              <li>拍照点设安全边界，安集海大峡谷、山口、湖边不要靠近危险边缘。</li>
+              <li>D5 或 D7 晚上适合安排正式团建晚餐，D6 不宜安排高强度活动。</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>路线规划版本：建议版 · 数据为自驾预估，请以出发当天导航和官方管制为准。封面图：Wikimedia Commons / Karakul-muztagh-ata-d04。</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

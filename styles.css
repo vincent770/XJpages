@@ -1,0 +1,451 @@
+:root {
+  color-scheme: light;
+  --bg: #f7f4ee;
+  --surface: #ffffff;
+  --surface-soft: #fff8ec;
+  --ink: #1d2628;
+  --muted: #667075;
+  --line: #e4ded2;
+  --brand: #0f766e;
+  --brand-dark: #0a4f4a;
+  --sand: #e8c37d;
+  --sky: #d7ecf4;
+  --shadow: 0 20px 60px rgba(36, 45, 45, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family:
+    Inter, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui,
+    -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.hero {
+  min-height: 620px;
+  background:
+    linear-gradient(90deg, rgba(12, 30, 30, 0.78), rgba(12, 30, 30, 0.18)),
+    url("https://upload.wikimedia.org/wikipedia/commons/f/f0/Karakul-muztagh-ata-d04.jpg")
+      center / cover;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  width: min(1160px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 22px 0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.topbar a {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 14px;
+  backdrop-filter: blur(8px);
+}
+
+.hero__content {
+  width: min(1160px, calc(100% - 40px));
+  margin: auto;
+  padding: 80px 0 120px;
+}
+
+.eyebrow,
+.section-kicker {
+  margin: 0 0 10px;
+  color: var(--sand);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  max-width: 780px;
+  margin: 0;
+  font-size: clamp(44px, 8vw, 86px);
+  line-height: 0.98;
+  letter-spacing: 0;
+}
+
+.hero__lead {
+  max-width: 720px;
+  margin: 24px 0 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 20px;
+}
+
+.hero__actions {
+  margin-top: 34px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  border-radius: 999px;
+  padding: 10px 20px;
+  font-weight: 800;
+}
+
+.button--primary {
+  background: #fff;
+  color: var(--brand-dark);
+}
+
+.button--ghost {
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: #fff;
+}
+
+main {
+  width: min(1160px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.overview,
+.map-section,
+.daily,
+.checklist {
+  padding: 70px 0;
+}
+
+.overview {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 42px;
+  align-items: center;
+}
+
+h2 {
+  margin: 0 0 14px;
+  font-size: clamp(30px, 4vw, 46px);
+  line-height: 1.08;
+}
+
+h3 {
+  margin: 0 0 10px;
+  font-size: 20px;
+}
+
+p {
+  margin: 0;
+}
+
+.overview p,
+.map-copy p,
+.checklist li {
+  color: var(--muted);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.stats-grid article,
+.day-card,
+.checklist-grid article {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 10px 35px rgba(31, 38, 40, 0.06);
+}
+
+.stats-grid article {
+  min-height: 138px;
+  padding: 22px;
+}
+
+.stats-grid span {
+  display: block;
+  color: var(--brand);
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.stats-grid p {
+  margin-top: 10px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.map-section {
+  display: grid;
+  grid-template-columns: 360px minmax(0, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+.map-copy {
+  background: var(--surface-soft);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.map-controls {
+  margin-top: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.map-controls button {
+  appearance: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  padding: 7px 12px;
+}
+
+.map-controls button.is-active {
+  border-color: var(--brand);
+  background: var(--brand);
+  color: #fff;
+}
+
+.selected-day {
+  margin-top: 20px;
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.selected-day strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--ink);
+  font-size: 18px;
+}
+
+.map-shell {
+  min-height: 620px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+#route-map {
+  width: 100%;
+  height: 100%;
+  min-height: 620px;
+}
+
+.section-heading {
+  margin-bottom: 24px;
+}
+
+.day-list {
+  display: grid;
+  gap: 18px;
+}
+
+.day-card {
+  overflow: hidden;
+}
+
+.day-card__head {
+  display: grid;
+  grid-template-columns: 130px minmax(0, 1fr) auto;
+  gap: 20px;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  padding: 20px 22px;
+}
+
+.day-badge {
+  border-radius: 8px;
+  background: var(--brand-dark);
+  color: #fff;
+  padding: 12px;
+  text-align: center;
+}
+
+.day-badge span {
+  display: block;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.day-badge small {
+  display: block;
+  margin-top: 6px;
+  color: rgba(255, 255, 255, 0.78);
+  font-weight: 700;
+}
+
+.day-title h3 {
+  margin: 0 0 6px;
+}
+
+.day-title p {
+  color: var(--muted);
+}
+
+.day-metrics {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.pill {
+  border-radius: 999px;
+  background: #eef8f7;
+  color: var(--brand-dark);
+  padding: 7px 11px;
+  font-size: 13px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.day-card__body {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  padding: 22px;
+}
+
+.info-block h4 {
+  margin: 0 0 10px;
+  color: var(--brand-dark);
+  font-size: 15px;
+}
+
+.info-block ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.info-block li {
+  margin: 6px 0;
+  color: var(--muted);
+}
+
+.map-link {
+  display: inline-flex;
+  margin-top: 14px;
+  color: var(--brand-dark);
+  font-weight: 900;
+}
+
+.checklist-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.checklist-grid article {
+  padding: 22px;
+}
+
+.checklist-grid ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.checklist-grid li {
+  margin: 8px 0;
+}
+
+footer {
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  padding: 28px 20px 34px;
+  text-align: center;
+}
+
+.leaflet-popup-content {
+  font-family:
+    Inter, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui,
+    sans-serif;
+}
+
+@media (max-width: 900px) {
+  .overview,
+  .map-section {
+    grid-template-columns: 1fr;
+  }
+
+  .map-shell,
+  #route-map {
+    min-height: 520px;
+  }
+
+  .day-card__head {
+    grid-template-columns: 1fr;
+  }
+
+  .day-metrics {
+    justify-content: flex-start;
+  }
+
+  .day-card__body,
+  .checklist-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .hero {
+    min-height: 560px;
+  }
+
+  .topbar {
+    justify-content: flex-start;
+    overflow-x: auto;
+  }
+
+  .hero__lead {
+    font-size: 17px;
+  }
+
+  .stats-grid,
+  .day-card__body,
+  .checklist-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .overview,
+  .map-section,
+  .daily,
+  .checklist {
+    padding: 48px 0;
+  }
+}
