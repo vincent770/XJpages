@@ -198,7 +198,7 @@ p {
 
 .map-section {
   display: grid;
-  grid-template-columns: 360px minmax(0, 1fr);
+  grid-template-columns: 420px minmax(0, 1fr);
   gap: 24px;
   align-items: stretch;
 }
@@ -212,28 +212,47 @@ p {
 
 .map-controls {
   margin-top: 22px;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 8px;
 }
 
 .map-controls button {
   appearance: none;
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: 8px;
   background: #fff;
   color: var(--ink);
   cursor: pointer;
   font: inherit;
-  font-size: 14px;
   font-weight: 800;
-  padding: 7px 12px;
+  min-height: 56px;
+  padding: 10px 12px;
+  text-align: left;
+}
+
+.map-controls button span {
+  display: block;
+  font-size: 15px;
+  line-height: 1.1;
+}
+
+.map-controls button small {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
 }
 
 .map-controls button.is-active {
   border-color: var(--brand);
   background: var(--brand);
   color: #fff;
+}
+
+.map-controls button.is-active small {
+  color: rgba(255, 255, 255, 0.78);
 }
 
 .selected-day {
@@ -244,25 +263,131 @@ p {
   font-size: 15px;
 }
 
-.selected-day strong {
-  display: block;
-  margin-bottom: 6px;
-  color: var(--ink);
-  font-size: 18px;
-}
-
 .map-shell {
   min-height: 620px;
   border: 1px solid var(--line);
   border-radius: 8px;
   overflow: hidden;
   box-shadow: var(--shadow);
+  background: var(--sky);
 }
 
 #route-map {
   width: 100%;
   height: 100%;
   min-height: 620px;
+}
+
+.route-brief {
+  display: grid;
+  gap: 14px;
+}
+
+.route-brief__eyebrow {
+  color: var(--brand-dark);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.route-brief h3 {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.route-brief p {
+  color: var(--muted);
+}
+
+.brief-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.brief-metrics span {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 10px;
+}
+
+.brief-metrics b,
+.brief-metrics small {
+  display: block;
+}
+
+.brief-metrics b {
+  color: var(--brand-dark);
+  font-size: 15px;
+  line-height: 1.2;
+}
+
+.brief-metrics small {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.road-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.road-tags span,
+.day-roadline div span {
+  border-radius: 999px;
+  background: #eef8f7;
+  color: var(--brand-dark);
+  padding: 6px 9px;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.route-facts {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.route-facts div {
+  border-left: 3px solid var(--sand);
+  padding-left: 10px;
+}
+
+.route-facts dt {
+  color: var(--brand-dark);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.route-facts dd {
+  margin: 2px 0 0;
+  color: var(--muted);
+}
+
+.road-label {
+  pointer-events: none;
+}
+
+.road-label span {
+  display: inline-flex;
+  align-items: center;
+  width: max-content;
+  max-width: 190px;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-left: 5px solid var(--label-color);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 24px rgba(22, 34, 35, 0.18);
+  color: #152123;
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1.2;
+  padding: 6px 10px 6px 8px;
+  white-space: nowrap;
 }
 
 .section-heading {
@@ -336,9 +461,31 @@ p {
 
 .day-card__body {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 24px;
   padding: 22px;
+}
+
+.day-roadline {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  border-bottom: 1px solid var(--line);
+  background: #fbf8f2;
+  padding: 14px 22px;
+}
+
+.day-roadline > span {
+  color: var(--brand-dark);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.day-roadline div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .info-block h4 {
@@ -439,6 +586,12 @@ footer {
   .stats-grid,
   .day-card__body,
   .checklist-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .map-controls,
+  .brief-metrics,
+  .day-roadline {
     grid-template-columns: 1fr;
   }
 
