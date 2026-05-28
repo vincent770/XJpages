@@ -156,7 +156,7 @@ button {
 }
 
 main {
-  width: min(1240px, calc(100% - 40px));
+  width: min(1360px, calc(100% - 32px));
   margin: 0 auto;
 }
 
@@ -183,9 +183,37 @@ section {
 
 .planner-grid {
   display: grid;
-  grid-template-columns: 270px minmax(0, 1fr);
-  gap: 18px;
+  grid-template-columns: 230px minmax(0, 1fr);
+  gap: 12px;
   align-items: start;
+}
+
+.planner {
+  padding-top: 30px;
+}
+
+.planner .section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px 24px;
+  max-width: none;
+  margin-bottom: 14px;
+}
+
+.planner .section-kicker {
+  grid-column: 1 / -1;
+  margin-bottom: -4px;
+}
+
+.planner .section-head h2 {
+  font-size: clamp(26px, 3vw, 38px);
+}
+
+.planner .section-head p:not(.section-kicker) {
+  max-width: 520px;
+  margin-top: 3px;
+  font-size: 14px;
+  text-align: right;
 }
 
 .day-switcher {
@@ -205,7 +233,7 @@ section {
   border-bottom: 1px solid var(--line);
   background: var(--brand-dark);
   color: #fff;
-  padding: 16px;
+  padding: 11px 12px;
 }
 
 .day-switcher__head span {
@@ -216,8 +244,8 @@ section {
 
 .day-tabs {
   display: grid;
-  gap: 8px;
-  padding: 12px;
+  gap: 6px;
+  padding: 8px;
 }
 
 .day-tab {
@@ -227,11 +255,11 @@ section {
   background: #fff;
   color: var(--ink);
   display: grid;
-  grid-template-columns: 48px minmax(0, 1fr);
-  gap: 10px;
+  grid-template-columns: 38px minmax(0, 1fr);
+  gap: 8px;
   align-items: center;
-  min-height: 70px;
-  padding: 10px;
+  min-height: 54px;
+  padding: 7px;
   text-align: left;
 }
 
@@ -239,7 +267,8 @@ section {
   border-radius: 8px;
   background: var(--surface-soft);
   color: var(--brand-dark);
-  padding: 9px 0;
+  padding: 7px 0;
+  font-size: 13px;
   text-align: center;
 }
 
@@ -247,13 +276,14 @@ section {
   display: block;
   font-weight: 900;
   line-height: 1.2;
+  font-size: 13px;
 }
 
 .day-tab small {
   display: block;
   margin-top: 4px;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 800;
 }
 
@@ -282,17 +312,17 @@ section {
 
 .board-hero {
   display: flex;
-  gap: 18px;
+  gap: 14px;
   align-items: flex-start;
   justify-content: space-between;
-  padding: 24px;
+  padding: 14px 16px 12px;
   background:
     linear-gradient(135deg, rgba(8, 115, 101, 0.12), rgba(226, 77, 63, 0.08)),
     #fff;
 }
 
 .board-day {
-  margin: 0 0 8px;
+  margin: 0 0 5px;
   color: var(--brand);
   font-size: 13px;
   font-weight: 900;
@@ -302,14 +332,15 @@ section {
 
 .board-hero h2 {
   margin: 0;
-  font-size: clamp(25px, 3vw, 38px);
+  font-size: clamp(22px, 2.4vw, 32px);
   line-height: 1.15;
 }
 
 .board-hero p:last-child {
   max-width: 780px;
-  margin: 10px 0 0;
+  margin: 6px 0 0;
   color: var(--muted);
+  font-size: 14px;
 }
 
 .board-actions {
@@ -324,20 +355,21 @@ section {
   border-radius: 999px;
   background: #fff;
   color: var(--brand-dark);
-  min-height: 40px;
-  padding: 8px 14px;
+  min-height: 34px;
+  padding: 6px 12px;
+  font-size: 13px;
   font-weight: 900;
 }
 
 .metric-row {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
-  padding: 0 24px 24px;
+  gap: 8px;
+  padding: 0 16px 12px;
 }
 
 .metric-card {
-  padding: 18px;
+  padding: 12px;
 }
 
 .metric-card small {
@@ -347,9 +379,9 @@ section {
 }
 
 .metric-card strong {
-  margin-top: 8px;
+  margin-top: 5px;
   color: var(--brand-dark);
-  font-size: clamp(22px, 3vw, 34px);
+  font-size: clamp(20px, 2.4vw, 28px);
   line-height: 1;
 }
 
@@ -359,14 +391,14 @@ section {
 }
 
 .metric-card--primary strong {
-  font-size: clamp(28px, 4vw, 42px);
+  font-size: clamp(28px, 3.2vw, 40px);
 }
 
 .board-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.7fr);
-  gap: 16px;
-  padding: 0 24px 24px;
+  grid-template-columns: minmax(0, 1.55fr) minmax(260px, 0.65fr);
+  gap: 12px;
+  padding: 0 16px 12px;
 }
 
 .map-panel,
@@ -379,12 +411,12 @@ section {
 
 #route-map {
   width: 100%;
-  height: 500px;
+  height: 320px;
 }
 
 .photo-panel {
   display: grid;
-  grid-template-rows: 250px minmax(0, 1fr);
+  grid-template-rows: 136px minmax(0, 1fr);
 }
 
 .photo-panel img {
@@ -395,43 +427,45 @@ section {
 }
 
 .photo-panel div {
-  padding: 18px;
+  padding: 12px;
 }
 
 .photo-panel span {
   color: var(--accent);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 900;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .photo-panel h3 {
-  margin: 7px 0 8px;
-  font-size: 21px;
+  margin: 5px 0 6px;
+  font-size: 17px;
   line-height: 1.2;
 }
 
 .photo-panel p,
 .photo-panel small {
   color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
 }
 
 .photo-panel small {
   display: block;
-  margin-top: 12px;
-  font-size: 12px;
+  margin-top: 7px;
+  font-size: 11px;
 }
 
 .detail-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-  padding: 0 24px 24px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  padding: 0 16px 12px;
 }
 
 .info-panel {
-  padding: 18px;
+  padding: 12px;
 }
 
 .info-panel h3,
@@ -439,30 +473,30 @@ section {
 .safety-grid h3 {
   margin: 0 0 12px;
   color: var(--brand-dark);
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .road-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 14px;
+  gap: 5px;
+  margin-bottom: 8px;
 }
 
 .road-tags span {
   border-radius: 999px;
   background: var(--surface-soft);
   color: var(--brand-dark);
-  padding: 6px 10px;
-  font-size: 12px;
+  padding: 4px 7px;
+  font-size: 11px;
   font-weight: 900;
 }
 
 .route-steps {
   display: grid;
-  gap: 8px;
+  gap: 4px;
   margin: 0;
-  padding-left: 22px;
+  padding-left: 18px;
 }
 
 .route-steps li,
@@ -479,16 +513,21 @@ section {
 
 .info-panel li,
 .ops-panel li {
-  margin: 7px 0;
+  margin: 4px 0;
+}
+
+.info-panel li {
+  font-size: 12px;
+  line-height: 1.42;
 }
 
 .management-strip {
   display: grid;
   grid-template-columns: 220px minmax(0, 1fr);
-  gap: 14px;
+  gap: 10px;
   border-top: 1px solid var(--line);
   background: #f7fbfa;
-  padding: 18px 24px 24px;
+  padding: 10px 16px 14px;
 }
 
 .management-strip label {
@@ -500,16 +539,18 @@ section {
 .management-strip select,
 .management-strip textarea {
   width: 100%;
-  margin-top: 8px;
+  margin-top: 5px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #fff;
   color: var(--ink);
-  padding: 10px 12px;
+  padding: 8px 10px;
+  min-height: 38px;
 }
 
 .management-strip textarea {
   resize: vertical;
+  height: 38px;
 }
 
 .overview-grid {
