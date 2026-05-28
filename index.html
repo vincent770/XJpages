@@ -3,133 +3,217 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>新疆自驾团建行程地图</title>
+    <title>新疆自驾团建驾驶看板</title>
+    <meta
+      name="description"
+      content="新疆自驾团建日程展示和管理看板，支持按天切换路线、里程、驾驶时间、路况、注意事项和风景照片。"
+    />
     <link rel="preconnect" href="https://unpkg.com" />
+    <link rel="preconnect" href="https://commons.wikimedia.org" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css?v=10" />
   </head>
   <body>
-    <header class="hero">
+    <header class="hero" id="top">
       <nav class="topbar" aria-label="页面导航">
-        <a href="#overview">概览</a>
-        <a href="#map-section">地图</a>
-        <a href="#daily">每日安排</a>
-        <a href="#checklist">注意事项</a>
+        <a href="#planner">每日看板</a>
+        <a href="#overview">全线概览</a>
+        <a href="#ops">团队管理</a>
+        <a href="#safety">注意事项</a>
       </nav>
-      <section class="hero__content">
-        <p class="eyebrow">2026.6.19 - 6.27 · 上海出发</p>
-        <h1>新疆自驾团建行程地图</h1>
-        <p class="hero__lead">
-          乌鲁木齐进，喀什出，串联 S101、独库公路、塔克拉玛干沙漠公路和帕米尔高原。
-          页面中的里程和时间为团队自驾规划估算，实际以当天导航、交通管制和天气为准。
+      <div class="hero__content">
+        <p class="eyebrow">2026.6.19 - 6.27 · 乌鲁木齐进 / 喀什出</p>
+        <h1>新疆自驾团建驾驶看板</h1>
+        <p>
+          面向出发前沟通和当天执行：手动切换每天行程，快速看清驾驶路线、距离、时间、路况特点、风险提醒和本日风景照片。
         </p>
-        <div class="hero__actions">
-          <a class="button button--primary" href="#map-section">查看路线地图</a>
-          <a class="button button--ghost" href="#daily">看每日安排</a>
+        <div class="hero__metrics" aria-label="全线关键数据">
+          <span><b>9 天</b><small>行程周期</small></span>
+          <span><b>约 2,900 km</b><small>自驾里程</small></span>
+          <span><b>约 45 h</b><small>纯驾驶时间</small></span>
+          <span><b>4 类</b><small>山路 / 沙漠 / 高原 / 城镇</small></span>
         </div>
-      </section>
+      </div>
     </header>
 
     <main>
+      <section class="planner" id="planner" aria-labelledby="planner-title">
+        <div class="section-head">
+          <p class="section-kicker">Daily Driver Board</p>
+          <h2 id="planner-title">按天切换行程</h2>
+          <p>选择任意一天后，地图、里程、驾驶时间、路况、照片和执行清单会同步更新。</p>
+        </div>
+
+        <div class="planner-grid">
+          <aside class="day-switcher" aria-label="选择日期">
+            <div class="day-switcher__head">
+              <span>行程天数</span>
+              <strong>D1-D9</strong>
+            </div>
+            <div class="day-tabs" id="day-tabs"></div>
+          </aside>
+
+          <section class="driver-board" aria-live="polite">
+            <div class="board-hero">
+              <div>
+                <p class="board-day" id="board-day"></p>
+                <h2 id="board-title"></h2>
+                <p id="board-subtitle"></p>
+              </div>
+              <div class="board-actions">
+                <button class="ghost-button" id="copy-summary" type="button">复制今日简报</button>
+                <button class="ghost-button" id="print-page" type="button">打印页面</button>
+              </div>
+            </div>
+
+            <div class="metric-row" aria-label="当天核心指标">
+              <article class="metric-card metric-card--primary">
+                <small>预计距离</small>
+                <strong id="metric-distance"></strong>
+              </article>
+              <article class="metric-card metric-card--primary">
+                <small>驾驶时间</small>
+                <strong id="metric-drive"></strong>
+              </article>
+              <article class="metric-card">
+                <small>建议出发</small>
+                <strong id="metric-depart"></strong>
+              </article>
+              <article class="metric-card">
+                <small>风险等级</small>
+                <strong id="metric-risk"></strong>
+              </article>
+            </div>
+
+            <div class="board-layout">
+              <div class="map-panel">
+                <div id="route-map" aria-label="每日驾驶路线地图"></div>
+              </div>
+              <article class="photo-panel">
+                <img id="day-photo" alt="" />
+                <div>
+                  <span id="photo-tag"></span>
+                  <h3 id="photo-title"></h3>
+                  <p id="photo-desc"></p>
+                  <small id="photo-credit"></small>
+                </div>
+              </article>
+            </div>
+
+            <div class="detail-grid">
+              <article class="info-panel">
+                <h3>路线与主要道路</h3>
+                <div class="road-tags" id="road-tags"></div>
+                <ol class="route-steps" id="route-steps"></ol>
+              </article>
+              <article class="info-panel">
+                <h3>路况信息</h3>
+                <ul id="road-conditions"></ul>
+              </article>
+              <article class="info-panel">
+                <h3>驾驶注意事项</h3>
+                <ul id="day-notes"></ul>
+              </article>
+              <article class="info-panel">
+                <h3>风景与团建建议</h3>
+                <ul id="scenery-list"></ul>
+              </article>
+            </div>
+
+            <div class="management-strip">
+              <label>
+                当天确认状态
+                <select id="day-status">
+                  <option value="未确认">未确认</option>
+                  <option value="已确认">已确认</option>
+                  <option value="需调整">需调整</option>
+                </select>
+              </label>
+              <label>
+                车队备注
+                <textarea id="day-note" rows="3" placeholder="例如：集合点、车队分组、当天临时调整。"></textarea>
+              </label>
+            </div>
+          </section>
+        </div>
+      </section>
+
       <section class="overview" id="overview" aria-labelledby="overview-title">
-        <div>
-          <p class="section-kicker">Route Summary</p>
-          <h2 id="overview-title">路线概览</h2>
+        <div class="section-head">
+          <p class="section-kicker">Route Overview</p>
+          <h2 id="overview-title">全线概览</h2>
           <p>
-            这是一条强度偏高但景观层次很完整的线路。建议每车至少 2 名驾驶员，独库、沙漠公路和帕米尔段都避免夜间驾驶。
-            原计划中 D6 直接赶到莎车过于紧张，本版改为住和田/墨玉，D7 再到喀什。
+            这条线路景观层次很完整，但强度不低。核心风险集中在独库公路管制、S101 弯道与砂石路肩、沙漠公路长距离补给、高原路段证件和海拔适应。
           </p>
         </div>
-        <div class="stats-grid" aria-label="行程统计">
-          <article>
-            <span>9</span>
-            <p>天行程</p>
+        <div class="overview-grid" id="overview-grid"></div>
+      </section>
+
+      <section class="ops" id="ops" aria-labelledby="ops-title">
+        <div class="section-head">
+          <p class="section-kicker">Team Ops</p>
+          <h2 id="ops-title">团队执行管理</h2>
+          <p>这些状态只保存在当前浏览器，适合会前演示或车队长本机使用；正式信息仍建议同步到团建群。</p>
+        </div>
+        <div class="ops-grid">
+          <article class="ops-panel">
+            <h3>出发前统一确认</h3>
+            <div class="check-list" id="global-checks"></div>
           </article>
-          <article>
-            <span>约 2,900 km</span>
-            <p>自驾里程</p>
+          <article class="ops-panel">
+            <h3>每日调度节奏</h3>
+            <ul>
+              <li>前一晚确认次日集合点、导航终点、第一休息点和午餐点。</li>
+              <li>每天早晨发一次今日简报：里程、驾驶时间、道路、风险、到达城市。</li>
+              <li>每车至少 2 名可驾驶人员，连续驾驶约 2 小时安排休息或换手。</li>
+              <li>高强度日 D3、D6、D8 不安排晚间正式活动。</li>
+            </ul>
           </article>
-          <article>
-            <span>约 45 h</span>
-            <p>纯驾驶时间</p>
-          </article>
-          <article>
-            <span>3 段</span>
-            <p>重点路况：独库 / 沙漠 / 高原</p>
+          <article class="ops-panel">
+            <h3>备用调整原则</h3>
+            <ul>
+              <li>独库临时管制：优先压缩景点，不夜间硬赶。</li>
+              <li>沙漠大风或低能见度：延后进入或缩短停留，只在安全停车区拍照。</li>
+              <li>高原不适：D8 可改为白沙湖短线往返，减少喀湖停留。</li>
+              <li>所有导航以当天高德/交警/景区通知为准。</li>
+            </ul>
           </article>
         </div>
       </section>
 
-      <section class="map-section" id="map-section" aria-labelledby="map-title">
-        <div class="map-copy">
-          <p class="section-kicker">Interactive Map</p>
-          <h2 id="map-title">实际路线地图</h2>
-          <p>
-            点击下方日期可单独查看当天路线。地图展示规划经过点、道路级线路和主要道路名称，适合团队会前讲解、分车沟通和当天复盘。
-          </p>
-          <div class="map-controls" id="map-controls" aria-label="地图筛选"></div>
-          <div class="selected-day" id="selected-day"></div>
+      <section class="safety" id="safety" aria-labelledby="safety-title">
+        <div class="section-head">
+          <p class="section-kicker">Safety Notes</p>
+          <h2 id="safety-title">驾驶及其他注意事项</h2>
         </div>
-        <div class="map-shell">
-          <div id="route-map" aria-label="新疆自驾路线地图"></div>
-        </div>
-      </section>
-
-      <section class="daily" id="daily" aria-labelledby="daily-title">
-        <div class="section-heading">
-          <p class="section-kicker">Daily Plan</p>
-          <h2 id="daily-title">每日行程表</h2>
-        </div>
-        <div class="day-list" id="day-list"></div>
-      </section>
-
-      <section class="checklist" id="checklist" aria-labelledby="checklist-title">
-        <div>
-          <p class="section-kicker">Checklist</p>
-          <h2 id="checklist-title">驾驶及其他注意事项</h2>
-        </div>
-        <div class="checklist-grid">
+        <div class="safety-grid">
           <article>
             <h3>证件与管制</h3>
-            <ul>
-              <li>独库公路每年季节性开放，出发前一天和当天早晨都要查交警/交通部门路况。</li>
-              <li>喀什前往白沙湖、喀拉库勒湖方向，建议提前办理边境管理区通行证。</li>
-              <li>租车订单、驾驶证、身份证、车辆保险、救援电话统一备份到团建群。</li>
-            </ul>
+            <p>独库、帕米尔方向都可能受季节、天气和临时交通管制影响。D8 前往白沙湖/喀拉库勒湖方向建议提前确认边境管理区通行证。</p>
           </article>
           <article>
-            <h3>车辆与驾驶</h3>
-            <ul>
-              <li>每车至少 2 名司机，连续驾驶 2 小时左右换人或休息。</li>
-              <li>山区弯道、达坂、峡谷路段不超车抢行，车队保持可视距离即可。</li>
-              <li>沙漠公路和高原段出发前满油，备足饮用水和高热量零食。</li>
-            </ul>
+            <h3>车辆与补给</h3>
+            <p>每车备饮用水、纸巾、垃圾袋、充电线、常用药、葡萄糖。独库、沙漠、高原段出发前满油并检查胎压。</p>
           </article>
           <article>
-            <h3>天气与装备</h3>
-            <ul>
-              <li>六月新疆昼夜温差大，巴音布鲁克和喀湖方向需要冲锋衣或薄羽绒。</li>
-              <li>防晒霜、墨镜、帽子、润唇膏、保湿用品要随身，不要放在大箱底。</li>
-              <li>带晕车药、肠胃药、葡萄糖、氧气瓶，喀湖方向少跑跳少饮酒。</li>
-            </ul>
+            <h3>拍照安全</h3>
+            <p>安集海峡谷、达坂、湖边、沙漠公路只在安全区域停车拍照。车队照不要占用行车道，不靠近峡谷边缘。</p>
           </article>
           <article>
-            <h3>团队协同</h3>
-            <ul>
-              <li>每天出发前确认车队编号、驾驶员、乘客、集合点和下一站停车点。</li>
-              <li>拍照点设安全边界，安集海大峡谷、山口、湖边不要靠近危险边缘。</li>
-              <li>D5 或 D7 晚上适合安排正式团建晚餐，D6 不宜安排高强度活动。</li>
-            </ul>
+            <h3>身体状态</h3>
+            <p>巴音布鲁克和喀拉库勒湖早晚温差大；高原段少跑跳、少饮酒，轻微不适先休息补水。</p>
           </article>
         </div>
       </section>
     </main>
 
     <footer>
-      <p>路线规划版本：建议版 · 数据为自驾预估，请以出发当天导航和官方管制为准。封面图：Wikimedia Commons / Karakul-muztagh-ata-d04。</p>
+      <p>数据为团建自驾规划估算，里程和时间请以出发当天导航、官方路况和景区通知为准。</p>
     </footer>
 
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="./app.js"></script>
+    <script src="./app.js?v=10"></script>
   </body>
 </html>

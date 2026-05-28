@@ -1,5 +1,7 @@
+const fallbackPhoto =
+  "https://commons.wikimedia.org/wiki/Special:FilePath/Karakul-muztagh-ata-d04.jpg?width=1200";
+
 const points = {
-  shanghai: { name: "上海", lat: 31.2304, lng: 121.4737 },
   urumqi: { name: "乌鲁木齐", lat: 43.8256, lng: 87.6168 },
   s101: { name: "S101百里丹霞", lat: 43.708, lng: 86.18 },
   anjihai: { name: "安集海大峡谷", lat: 44.0704, lng: 85.181 },
@@ -23,340 +25,293 @@ const days = [
     id: "d1",
     day: "D1",
     date: "6.19 周五",
-    title: "上海飞乌鲁木齐",
+    title: "上海 → 乌鲁木齐",
+    subtitle: "抵达、取车、补给，建立车队执行节奏。",
     stay: "乌鲁木齐",
-    distance: "市内约 20-40 km",
-    driveTime: "约 0.5-1 h",
-    route: [points.shanghai, points.urumqi],
     transport: "航班 + 市内取车",
-    schedule: [
-      "抵达乌鲁木齐，统一取车、验车、熟悉车辆功能。",
-      "采购车上补给：饮用水、零食、防晒、常用药、垃圾袋。",
-      "晚餐可选大巴扎/和田二街，控制饮酒，第二天进入自驾状态。",
-    ],
-    stops: ["乌鲁木齐机场", "取车点", "市区晚餐"],
-    notes: [
-      "验车重点看轮胎、备胎、玻璃水、刹车、车损照片和保险救援电话。",
-      "每车建立小群或车队编号，确认第二天集合时间和第一目的地。",
-    ],
-    mapLink: "https://uri.amap.com/navigation?from=121.4737,31.2304,%E4%B8%8A%E6%B5%B7&to=87.6168,43.8256,%E4%B9%8C%E9%B2%81%E6%9C%A8%E9%BD%90&mode=car",
+    distance: "市内 20-40 km",
+    driveTime: "0.5-1 h",
+    depart: "按航班",
+    risk: "低",
+    theme: "抵达适应",
+    route: [points.urumqi],
+    roadNames: ["乌鲁木齐机场路", "市区道路", "酒店/取车点连接路"],
+    roadConditions: ["以城市道路为主，重点不在驾驶强度，而在取车、验车、补给。", "机场到市区可能遇晚高峰，建议不要把正式团建安排太晚。"],
+    notes: ["验车拍照：四周车身、轮胎、备胎、玻璃、仪表盘油量和里程。", "每车建立小群，确认司机、乘客、车队编号和第二天集合点。"],
+    scenery: ["大巴扎或和田二街适合轻松晚餐。", "第一晚控制饮酒，第二天进入 S101 自驾状态。"],
+    steps: ["抵达乌鲁木齐", "统一取车验车", "采购水、零食、防晒、药品", "市区晚餐后早休息"],
+    labels: [{ text: "乌鲁木齐取车补给", lat: 43.82, lng: 87.62 }],
+    photo: {
+      tag: "Arrival",
+      title: "乌鲁木齐集合日",
+      desc: "这一天的目标是把车辆、补给和团队协同准备好，为第二天正式自驾留出体力。",
+      url: "https://commons.wikimedia.org/wiki/Special:FilePath/Urumqi%20city%20view.jpg?width=1200",
+      credit: "照片参考：Wikimedia Commons，如加载失败会使用帕米尔备用图。",
+    },
   },
   {
     id: "d2",
     day: "D2",
     date: "6.20 周六",
     title: "乌鲁木齐 → S101国防公路 → 安集海大峡谷 → 奎屯",
+    subtitle: "从城市切入丹霞、峡谷和草原过渡景观，是全线第一段正式自驾。",
     stay: "奎屯/独山子",
-    distance: "约 400 km",
-    driveTime: "约 7-8 h",
-    route: [points.urumqi, points.s101, points.anjihai, points.kuitun],
     transport: "自驾",
-    schedule: [
-      "早出发进入 S101，沿途看丹霞、峡谷、草原过渡景观。",
-      "中午在可停车镇区或服务点简餐，避免把正餐放到偏僻路段。",
-      "下午前往安集海大峡谷，傍晚抵达奎屯/独山子入住。",
+    distance: "约 400 km",
+    driveTime: "7-8 h",
+    depart: "08:00 前",
+    risk: "中",
+    theme: "丹霞公路",
+    route: [points.urumqi, points.s101, points.anjihai, points.kuitun],
+    roadNames: ["G30连霍高速", "S101国防公路", "安集海峡谷连接路"],
+    roadConditions: ["S101 弯道、起伏和无服务区路段较多，雨后或大风天路肩砂石更多。", "安集海大峡谷附近风大、边缘土质松散，只在安全区域短停拍照。"],
+    notes: ["乌鲁木齐出城前满油，S101 中段补给少，午餐不要压到偏僻路段。", "车队不要追车，遇落石、施工和牲畜横穿时放慢通过。"],
+    scenery: ["S101 丹霞、峡谷、草原过渡景观适合车队第一张合影。", "安集海大峡谷只看安全区域，不靠近悬崖边。"],
+    steps: ["乌鲁木齐出城", "转入 S101 国防公路", "安集海大峡谷短停", "傍晚抵达奎屯/独山子"],
+    labels: [
+      { text: "G30 连霍高速", lat: 43.77, lng: 87.05 },
+      { text: "S101 国防公路", lat: 43.7, lng: 86.08 },
+      { text: "安集海大峡谷", lat: 44.05, lng: 85.25 },
     ],
-    stops: ["S101百里丹霞", "肯斯瓦特方向", "安集海大峡谷", "奎屯/独山子"],
-    notes: [
-      "S101弯多、路面和天气变化快，车队不要追车，遇落石路段快速通过。",
-      "安集海大峡谷边缘土质松散，拍照设安全线，不靠近悬崖边。",
-      "当天不要安排夜间赶路，给第二天独库留足体力。",
-    ],
-    mapLink: "https://uri.amap.com/navigation?from=87.6168,43.8256,%E4%B9%8C%E9%B2%81%E6%9C%A8%E9%BD%90&to=84.8892,44.3266,%E5%A5%8E%E5%B1%AF&mode=car",
+    photo: {
+      tag: "Canyon Road",
+      title: "S101 与峡谷边缘",
+      desc: "第一段自驾景观密度高，但也容易因为拍照拖慢节奏，建议每站提前限定停留时间。",
+      url: "https://commons.wikimedia.org/wiki/Special:FilePath/Anjihai%20Grand%20Canyon.jpg?width=1200",
+      credit: "照片参考：Wikimedia Commons / 安集海大峡谷相关图片。",
+    },
   },
   {
     id: "d3",
     day: "D3",
     date: "6.21 周日",
     title: "独山子 → 独库公路北中段 → 乔尔玛 → 巴音布鲁克",
+    subtitle: "全线山路强度最高的一天之一，达坂、弯道、天气和管制是核心变量。",
     stay: "巴音布鲁克",
-    distance: "约 430 km",
-    driveTime: "约 8.5-10 h",
-    route: [points.kuitun, points.qiaerma, points.bayinbuluk],
     transport: "自驾",
-    schedule: [
-      "早晨从独山子方向进入独库公路，雪山、达坂、峡谷路段集中出现。",
-      "午间在乔尔玛/那拉提方向补给休息，司机换人。",
-      "傍晚抵达巴音布鲁克，视体力和天气安排九曲十八弯日落。",
+    distance: "约 430 km",
+    driveTime: "8.5-10 h",
+    depart: "07:30 前",
+    risk: "高",
+    theme: "独库北段",
+    route: [points.kuitun, points.qiaerma, points.bayinbuluk],
+    roadNames: ["G217独库公路北段", "乔尔玛方向", "独库中段草原路"],
+    roadConditions: ["独库北段连续弯道、长坡、落石和临时交通管制都可能出现。", "山区天气变化快，遇雨雪、浓雾或交警管制时不硬闯。"],
+    notes: ["出发前查路况，独山子补满油；前排备晕车药和塑料袋。", "每 2 小时左右休息或换手，避免傍晚后继续压山路。"],
+    scenery: ["独库达坂、乔尔玛纪念地、巴音布鲁克草原是当天重点。", "如体力和天气允许，巴音布鲁克九曲十八弯可看日落。"],
+    steps: ["独山子进入独库", "雪山达坂与峡谷路段", "乔尔玛补给休息", "抵达巴音布鲁克"],
+    labels: [
+      { text: "G217 独库北段", lat: 44.02, lng: 84.55 },
+      { text: "乔尔玛", lat: 43.83, lng: 84.08 },
+      { text: "草原山路", lat: 43.35, lng: 84.12 },
     ],
-    stops: ["独库公路起点段", "乔尔玛", "巴音布鲁克草原", "九曲十八弯"],
-    notes: [
-      "独库公路受落石、积雪、降雨和交通管制影响很大，必须当天查路况。",
-      "山路连续弯道多，乘员容易晕车，前排备晕车药和塑料袋。",
-      "巴音布鲁克夜间气温低，入住后加衣，减少剧烈活动。",
-    ],
-    mapLink: "https://uri.amap.com/navigation?from=84.8892,44.3266,%E7%8B%AC%E5%B1%B1%E5%AD%90&to=84.159,43.031,%E5%B7%B4%E9%9F%B3%E5%B8%83%E9%B2%81%E5%85%8B&mode=car",
+    photo: {
+      tag: "Mountain Road",
+      title: "独库公路山地段",
+      desc: "当天不是单纯赶路，而是全线驾驶风险最高的山地段之一，拍摄和停车都要服从路况。",
+      url: "https://commons.wikimedia.org/wiki/Special:FilePath/G217_Duku.jpg?width=1200",
+      credit: "照片参考：Wikimedia Commons / 独库公路相关图片。",
+    },
   },
   {
     id: "d4",
     day: "D4",
     date: "6.22 周一",
     title: "巴音布鲁克 → 独库南段 → 大小龙池 → 天山神秘大峡谷 → 库车",
+    subtitle: "从高山草甸进入红色峡谷，驾驶强度较 D3 下降但景点停留更多。",
     stay: "库车",
-    distance: "约 280 km",
-    driveTime: "约 5.5-7 h",
-    route: [points.bayinbuluk, points.longchi, points.kuqaCanyon, points.kuqa],
     transport: "自驾",
-    schedule: [
-      "上午穿越独库南段，景观从高山草甸逐渐变成红色峡谷。",
-      "中途停靠大小龙池，控制停留时间，给峡谷游览留余量。",
-      "下午进入天山神秘大峡谷，结束后前往库车入住。",
+    distance: "约 280 km",
+    driveTime: "5.5-7 h",
+    depart: "08:00 前",
+    risk: "中高",
+    theme: "独库南段",
+    route: [points.bayinbuluk, points.longchi, points.kuqaCanyon, points.kuqa],
+    roadNames: ["G217独库公路南段", "大小龙池路段", "天山神秘大峡谷景区路"],
+    roadConditions: ["独库南段下坡和连续弯较多，注意刹车热衰减。", "峡谷景区遇强降雨、山洪预警或关闭通知时直接调整为库车市区。"],
+    notes: ["大小龙池短停即可，给峡谷游览留出余量。", "当天拍摄点多，车队长要提前明确每站集合时间。"],
+    scenery: ["大小龙池适合短暂停靠。", "天山神秘大峡谷适合集体照和轻徒步。", "晚上可安排库车夜市或轻松晚餐。"],
+    steps: ["巴音布鲁克出发", "穿越独库南段", "大小龙池短停", "天山神秘大峡谷", "库车入住"],
+    labels: [
+      { text: "G217 独库南段", lat: 42.65, lng: 83.78 },
+      { text: "大小龙池", lat: 42.32, lng: 83.4 },
+      { text: "库车峡谷路", lat: 42.1, lng: 83.05 },
     ],
-    stops: ["独库南段", "大小龙池", "天山神秘大峡谷", "库车夜市"],
-    notes: [
-      "峡谷景区遇强降雨、山洪预警或景区关闭时，直接调整为库车市区活动。",
-      "下坡路段多用发动机制动，避免长时间踩刹车导致热衰减。",
-      "这天拍摄点多，团队要约定每站停留时间。",
-    ],
-    mapLink: "https://uri.amap.com/navigation?from=84.159,43.031,%E5%B7%B4%E9%9F%B3%E5%B8%83%E9%B2%81%E5%85%8B&to=82.962,41.7174,%E5%BA%93%E8%BD%A6&mode=car",
+    photo: {
+      tag: "Red Canyon",
+      title: "库车峡谷地貌",
+      desc: "高山、湖泊和红色峡谷在一天内切换，适合做团建照片素材日。",
+      url: "https://commons.wikimedia.org/wiki/Special:FilePath/Keziya%20Grand%20Canyon%20Kuqa.jpg?width=1200",
+      credit: "照片参考：Wikimedia Commons / 库车峡谷相关图片。",
+    },
   },
   {
     id: "d5",
     day: "D5",
     date: "6.23 周二",
     title: "库车 → 克孜尔千佛洞/库车王府 → 阿克苏",
+    subtitle: "独库后缓冲修整日，驾驶强度低，适合补给、洗车和调整团队状态。",
     stay: "阿克苏",
-    distance: "约 260 km",
-    driveTime: "约 3-4 h",
-    route: [points.kuqa, points.aksu],
     transport: "自驾",
-    schedule: [
-      "上午轻松出发，可选库车王府或克孜尔千佛洞。",
-      "午后走高速前往阿克苏，抵达后洗车、补给、检查车辆。",
-      "晚上安排团队正餐或自由活动，作为独库后恢复日。",
+    distance: "约 260 km",
+    driveTime: "3-4 h",
+    depart: "09:30 左右",
+    risk: "低",
+    theme: "龟兹文化",
+    route: [points.kuqa, points.aksu],
+    roadNames: ["G3012吐和高速", "库车市区道路", "阿克苏市区道路"],
+    roadConditions: ["以高速和城市道路为主，是全线强度最低的一天。", "若 D3/D4 因管制延误，可压缩文化点，把今天作为缓冲。"],
+    notes: ["抵达阿克苏后补油、补水、检查轮胎和车辆底盘外观。", "晚上适合安排正式团建餐或恢复性自由活动。"],
+    scenery: ["库车王府或克孜尔千佛洞二选一。", "这天更适合文化体验和休整，不建议把景点排满。"],
+    steps: ["库车轻松出发", "可选文化点", "G3012 前往阿克苏", "车辆检查与补给"],
+    labels: [
+      { text: "G3012 吐和高速", lat: 41.45, lng: 81.6 },
+      { text: "龟兹文化段", lat: 41.72, lng: 82.96 },
     ],
-    stops: ["库车市区", "克孜尔千佛洞可选", "阿克苏"],
-    notes: [
-      "这天是全线缓冲日，若前两天因独库管制延误，可压缩可选景点。",
-      "补满油，检查胎压和车身情况，为第二天沙漠公路做准备。",
-    ],
-    mapLink: "https://uri.amap.com/navigation?from=82.962,41.7174,%E5%BA%93%E8%BD%A6&to=80.2606,41.1688,%E9%98%BF%E5%85%8B%E8%8B%8F&mode=car",
+    photo: {
+      tag: "Culture Buffer",
+      title: "龟兹文化与修整日",
+      desc: "把节奏从连续山路里拉回来，为第二天沙漠公路准备车辆和体力。",
+      url: "https://commons.wikimedia.org/wiki/Special:FilePath/Kizil_caves_2006_10_01.jpg?width=1200",
+      credit: "照片参考：Wikimedia Commons / 克孜尔石窟相关图片。",
+    },
   },
   {
     id: "d6",
     day: "D6",
     date: "6.24 周三",
     title: "阿克苏 → 阿拉尔 → G580阿和沙漠公路 → 和田/墨玉",
+    subtitle: "长距离穿越塔克拉玛干边缘，距离和持续驾驶是全天重点。",
     stay: "和田/墨玉",
-    distance: "约 560 km",
-    driveTime: "约 7.5-9 h",
-    route: [points.aksu, points.alar, points.hotan],
     transport: "自驾",
-    schedule: [
-      "早出发前往阿拉尔，进入 G580 阿和沙漠公路。",
-      "沙漠段以行车体验和安全停车点拍照为主，不做长时间暴晒停留。",
-      "傍晚抵达和田/墨玉，安排清淡晚餐和早休息。",
+    distance: "约 560 km",
+    driveTime: "7.5-9 h",
+    depart: "07:30 前",
+    risk: "高",
+    theme: "沙漠公路",
+    route: [points.aksu, points.alar, points.hotan],
+    roadNames: ["G580阿和沙漠公路", "阿拉尔连接线", "塔克拉玛干沙漠段"],
+    roadConditions: ["长距离、日晒强、补给稀疏，G580 阿和沙漠公路是当天核心。", "大风沙、低能见度或车辆异常时不冒进，不随意离开公路。"],
+    notes: ["阿克苏出发前满油，进入沙漠段前确认水、胎压、离线地图。", "司机午后容易犯困，车队应安排固定休息点和换手。"],
+    scenery: ["沙漠公路直线段适合车队照，但只在安全停车区短停。", "傍晚抵达后安排清淡晚餐和早休息。"],
+    steps: ["阿克苏早出发", "阿拉尔补给确认", "进入 G580 阿和沙漠公路", "抵达和田/墨玉"],
+    labels: [
+      { text: "阿拉尔连接线", lat: 40.9, lng: 80.9 },
+      { text: "G580 阿和沙漠公路", lat: 39.4, lng: 80.55 },
+      { text: "塔克拉玛干沙漠段", lat: 38.45, lng: 80.25 },
     ],
-    stops: ["阿拉尔", "G580阿和沙漠公路", "和田/墨玉"],
-    notes: [
-      "本版将住宿调整到和田/墨玉，避免原计划当天硬赶莎车造成疲劳驾驶。",
-      "沙漠公路出发前满油，备水，不随意下道，不在低能见度或大风沙时冒进。",
-      "车内空调连续运行，注意乘员补水，司机避免午后犯困。",
-    ],
-    mapLink: "https://uri.amap.com/navigation?from=80.2606,41.1688,%E9%98%BF%E5%85%8B%E8%8B%8F&to=79.9225,37.1168,%E5%92%8C%E7%94%B0&mode=car",
+    photo: {
+      tag: "Desert Crossing",
+      title: "塔克拉玛干沙漠公路",
+      desc: "这是全线里程最长的一天，页面会把距离和驾驶时间突出显示，提醒团队把安全放在景观之前。",
+      url: "https://commons.wikimedia.org/wiki/Special:FilePath/Tarim_Desert_Highway_-_Desert_Scene%2C_Xinjiang%2C_China.jpg?width=1200",
+      credit: "照片参考：Wikimedia Commons / 塔里木沙漠公路相关图片。",
+    },
   },
   {
     id: "d7",
     day: "D7",
     date: "6.25 周四",
     title: "和田/墨玉 → 莎车 → 喀什",
+    subtitle: "沿南疆城镇带进入喀什，仍是长距离驾驶，莎车建议短停。",
     stay: "喀什",
-    distance: "约 500 km",
-    driveTime: "约 6-7.5 h",
-    route: [points.hotan, points.shache, points.kashgar],
     transport: "自驾",
-    schedule: [
-      "上午从和田/墨玉出发，沿南疆城镇带前往莎车。",
-      "莎车短停，可选叶尔羌汗王陵或老城街区，控制在 1.5-2 小时。",
-      "下午抵达喀什，晚上逛喀什古城，适合安排正式团建晚餐。",
+    distance: "约 500 km",
+    driveTime: "6-7.5 h",
+    depart: "08:00 前",
+    risk: "中",
+    theme: "南疆城镇带",
+    route: [points.hotan, points.shache, points.kashgar],
+    roadNames: ["G3012吐和高速", "莎车连接线", "喀什入城道路"],
+    roadConditions: ["以高速和国道为主，距离仍长。", "莎车短停即可，避免拖到夜间进喀什。"],
+    notes: ["和田/墨玉出发前满油，进喀什后确认 D8 边境通行证和早餐。", "喀什城区行人和车辆密度更高，入城后放慢。"],
+    scenery: ["莎车可选叶尔羌汗王陵或老城街区短停。", "晚上喀什古城适合正式团建晚餐。"],
+    steps: ["和田/墨玉出发", "南疆城镇带行驶", "莎车短停", "喀什入住与古城晚餐"],
+    labels: [
+      { text: "G3012 南疆高速", lat: 38.0, lng: 78.2 },
+      { text: "莎车短停", lat: 38.41, lng: 77.25 },
+      { text: "喀什入城", lat: 39.35, lng: 76.25 },
     ],
-    stops: ["和田/墨玉", "莎车", "喀什古城"],
-    notes: [
-      "今天仍是长距离驾驶，莎车不要停留过久，避免夜间进喀什。",
-      "到喀什后确认边境通行证办理情况，为 D8 帕米尔方向做准备。",
-    ],
-    mapLink: "https://uri.amap.com/navigation?from=79.9225,37.1168,%E5%92%8C%E7%94%B0&to=75.9898,39.4704,%E5%96%80%E4%BB%80&mode=car",
+    photo: {
+      tag: "Kashgar Night",
+      title: "喀什古城团建夜",
+      desc: "长距离驾驶后进入喀什，晚间活动要轻松，但这是全线最适合团队聚餐的一晚。",
+      url: "https://commons.wikimedia.org/wiki/Special:FilePath/Kashgar%20old%20town.jpg?width=1200",
+      credit: "照片参考：Wikimedia Commons / 喀什古城相关图片。",
+    },
   },
   {
     id: "d8",
     day: "D8",
     date: "6.26 周五",
     title: "喀什 → 白沙湖 → 喀拉库勒湖 → 喀什",
+    subtitle: "帕米尔高原往返日，证件、海拔、天气和返程时间是核心。",
     stay: "喀什",
-    distance: "约 420 km",
-    driveTime: "约 7-8 h",
-    route: [points.kashgar, points.baisha, points.karakul, points.kashgar],
     transport: "自驾往返",
-    schedule: [
-      "清晨从喀什出发，沿中巴友谊公路前往白沙湖。",
-      "中午前后到喀拉库勒湖，天气好时可远眺慕士塔格峰。",
-      "下午返程回喀什，晚上整理行李和还车资料。",
+    distance: "约 420 km",
+    driveTime: "7-8 h",
+    depart: "07:00 前",
+    risk: "高",
+    theme: "帕米尔高原",
+    route: [points.kashgar, points.baisha, points.karakul, points.kashgar],
+    roadNames: ["G314中巴友谊公路", "白沙湖路段", "喀拉库勒湖高原路"],
+    roadConditions: ["G314 海拔上升明显，白沙湖和喀湖方向天气变化快。", "如遇雨雪、大风或身体不适，可改为白沙湖短线往返。"],
+    notes: ["边境管理区通行证和身份证随身，遇检查主动配合。", "喀拉库勒湖约 3600 米，少跑跳、不饮酒，轻微不适先休息补水。"],
+    scenery: ["白沙湖、喀拉库勒湖、慕士塔格峰方向是全线大片日。", "厚外套、热水、葡萄糖放在车内易拿位置。"],
+    steps: ["喀什清晨出发", "沿 G314 中巴友谊公路上行", "白沙湖停靠", "喀拉库勒湖观景", "返回喀什"],
+    labels: [
+      { text: "G314 中巴友谊公路", lat: 38.93, lng: 75.55 },
+      { text: "白沙湖", lat: 38.35, lng: 75.08 },
+      { text: "喀拉库勒湖 约3600m", lat: 38.44, lng: 75.06 },
     ],
-    stops: ["白沙湖", "喀拉库勒湖", "慕士塔格峰观景方向", "喀什"],
-    notes: [
-      "需要边境管理区通行证，证件随身携带，遇检查主动配合。",
-      "喀拉库勒湖海拔约 3600 米，少跑跳，不饮酒，轻微不适先休息补水。",
-      "高原天气变化快，带厚外套，遇雨雪或大风按当天管制调整。",
-    ],
-    mapLink: "https://uri.amap.com/navigation?from=75.9898,39.4704,%E5%96%80%E4%BB%80&to=75.058,38.435,%E5%96%80%E6%8B%89%E5%BA%93%E5%8B%92%E6%B9%96&mode=car",
+    photo: {
+      tag: "Pamir Plateau",
+      title: "喀拉库勒湖与慕士塔格峰",
+      desc: "全线最有视觉记忆点的一天，但也是海拔和证件要求最需要提前确认的一天。",
+      url: fallbackPhoto,
+      credit: "照片：Wikimedia Commons / Karakul-muztagh-ata-d04。",
+    },
   },
   {
     id: "d9",
     day: "D9",
     date: "6.27 周六",
-    title: "喀什飞上海",
+    title: "喀什 → 上海",
+    subtitle: "市区还车、行李整理、返程，重点是留足机场时间。",
     stay: "返程",
-    distance: "市内约 15-30 km",
-    driveTime: "约 0.5-1 h",
-    route: [points.kashgar, points.shanghai],
     transport: "市内还车 + 航班",
-    schedule: [
-      "早餐后按航班时间还车，处理油量、车损、违章押金等事项。",
-      "预留机场安检和团队行李整理时间。",
-      "返程上海，团建结束。",
-    ],
-    stops: ["喀什市区", "喀什机场", "上海"],
-    notes: [
-      "建议选择下午或傍晚航班，上午不安排远距离活动。",
-      "车辆还车时拍照留底，确认租车平台订单状态。",
-    ],
-    mapLink: "https://uri.amap.com/navigation?from=75.9898,39.4704,%E5%96%80%E4%BB%80&to=121.4737,31.2304,%E4%B8%8A%E6%B5%B7&mode=car",
+    distance: "市内 15-30 km",
+    driveTime: "0.5-1 h",
+    depart: "按航班",
+    risk: "低",
+    theme: "返程还车",
+    route: [points.kashgar],
+    roadNames: ["喀什市区道路", "喀什机场路", "还车点连接路"],
+    roadConditions: ["以市区道路和机场路为主，重点是还车、行李和安检时间。"],
+    notes: ["还车拍照留底，确认油量、车损、违章押金规则。", "建议选择下午或傍晚航班，上午不安排远距离活动。"],
+    scenery: ["酒店或机场简单合影即可。", "把票据、照片和租车订单统一留存。"],
+    steps: ["早餐后整理行李", "按油量规则还车", "前往喀什机场", "返程上海"],
+    labels: [{ text: "喀什还车返程", lat: 39.47, lng: 75.99 }],
+    photo: {
+      tag: "Return",
+      title: "喀什返程日",
+      desc: "最后一天减少活动，把还车和机场时间做稳，避免因为押金、油量或行李影响返程。",
+      url: "https://commons.wikimedia.org/wiki/Special:FilePath/Kashgar%20old%20city.jpg?width=1200",
+      credit: "照片参考：Wikimedia Commons / 喀什相关图片。",
+    },
   },
 ];
 
-const colors = [
-  "#0f766e",
-  "#dc8b21",
-  "#277da1",
-  "#9d4edd",
-  "#5a8f29",
-  "#c2410c",
-  "#b91c1c",
-  "#2563eb",
-  "#475569",
-];
+const colors = ["#087365", "#e24d3f", "#257f9a", "#8a6f00", "#4e8f43", "#b85b28", "#9f3a2f", "#326fd1", "#56616a"];
+const routeCache = new Map();
+let activeDayId = "d2";
+let activeRenderId = 0;
 
-const routeDetails = {
-  d1: {
-    theme: "抵达适应 · 取车补给",
-    depart: "按航班",
-    roadFeature: "机场和市区道路为主，重点是取车、验车和补给。",
-    roadNames: ["上海 → 乌鲁木齐航班", "乌鲁木齐市区道路"],
-    alerts: ["验车拍照", "建车队群", "早休息"],
-    logistics: "补给建议：每车至少 12 瓶水、纸巾、垃圾袋、充电线、常用药。",
-    photo: "大巴扎或市区晚餐合影即可，不建议晚间安排正式团建。",
-    roadLabels: [{ text: "航班：上海 → 乌鲁木齐", lat: 37.8, lng: 104.5 }],
-  },
-  d2: {
-    theme: "丹霞公路 · 峡谷边缘",
-    depart: "08:00 前",
-    roadFeature: "S101弯道、起伏和无服务区路段较多，安集海附近注意风大和砂石路肩。",
-    roadNames: ["G30连霍高速", "S101国防公路", "安集海峡谷连接路"],
-    alerts: ["弯多慢行", "谨慎停车", "峡谷安全线"],
-    logistics: "乌鲁木齐出城前满油；S101中段补给少，午餐尽量在可停车镇区解决。",
-    photo: "S101丹霞路段适合车队照，安集海只在安全区域短停拍照。",
-    roadLabels: [
-      { text: "G30 连霍高速", lat: 43.78, lng: 87.05 },
-      { text: "S101 国防公路", lat: 43.71, lng: 86.08 },
-      { text: "安集海大峡谷", lat: 44.05, lng: 85.26 },
-    ],
-  },
-  d3: {
-    theme: "独库北段 · 雪山达坂",
-    depart: "07:30 前",
-    roadFeature: "全线高强度山路日，独库北段达坂、连续弯、落石和临时管制是重点。",
-    roadNames: ["G217独库公路北段", "乔尔玛方向", "独库中段草原路"],
-    alerts: ["查管制", "司机换手", "避免夜路"],
-    logistics: "独山子出发前满油，乔尔玛/那拉提方向安排午餐和卫生间休息。",
-    photo: "雪山达坂、乔尔玛、巴音布鲁克日落是当天主要拍摄点。",
-    roadLabels: [
-      { text: "G217 独库公路北段", lat: 44.05, lng: 84.55 },
-      { text: "乔尔玛", lat: 43.83, lng: 84.08 },
-      { text: "草原山路", lat: 43.35, lng: 84.1 },
-    ],
-  },
-  d4: {
-    theme: "独库南段 · 红色峡谷",
-    depart: "08:00 前",
-    roadFeature: "从高山草甸进入干旱峡谷，长下坡和峡谷天气变化需要重点关注。",
-    roadNames: ["G217独库公路南段", "大小龙池路段", "天山神秘大峡谷景区路"],
-    alerts: ["长下坡", "峡谷天气", "控制停留"],
-    logistics: "巴音布鲁克出发前补水；峡谷游览前确认景区开放和天气预警。",
-    photo: "大小龙池适合短停，库车峡谷适合集体照和徒步小段。",
-    roadLabels: [
-      { text: "G217 独库南段", lat: 42.65, lng: 83.78 },
-      { text: "大小龙池", lat: 42.32, lng: 83.4 },
-      { text: "库车峡谷路", lat: 42.1, lng: 83.05 },
-    ],
-  },
-  d5: {
-    theme: "龟兹文化 · 缓冲修整",
-    depart: "09:30 左右",
-    roadFeature: "以高速和城市道路为主，是全线强度最低的一天，适合补给修整。",
-    roadNames: ["G3012吐和高速", "库车市区道路", "阿克苏市区道路"],
-    alerts: ["洗车补给", "检查胎压", "留作缓冲"],
-    logistics: "抵达阿克苏后补油、补水、检查轮胎和车辆底盘外观。",
-    photo: "库车王府或克孜尔千佛洞二选一，避免文化点排太满。",
-    roadLabels: [
-      { text: "G3012 吐和高速", lat: 41.45, lng: 81.6 },
-      { text: "龟兹文化段", lat: 41.72, lng: 82.96 },
-    ],
-  },
-  d6: {
-    theme: "沙漠公路 · 长距离穿越",
-    depart: "07:30 前",
-    roadFeature: "长距离、日晒强、补给稀疏，G580阿和沙漠公路是当天核心。",
-    roadNames: ["G580阿和沙漠公路", "阿拉尔连接线", "塔克拉玛干沙漠段"],
-    alerts: ["满油满水", "不离公路", "防困驾驶"],
-    logistics: "阿克苏出发前满油；进入沙漠段前确认每车饮用水、胎压和导航离线地图。",
-    photo: "沙漠公路直线段适合车队照，只在安全停车点短停。",
-    roadLabels: [
-      { text: "阿拉尔连接线", lat: 40.9, lng: 80.9 },
-      { text: "G580 阿和沙漠公路", lat: 39.4, lng: 80.55 },
-      { text: "塔克拉玛干沙漠段", lat: 38.45, lng: 80.25 },
-    ],
-  },
-  d7: {
-    theme: "南疆城镇带 · 喀什入城",
-    depart: "08:00 前",
-    roadFeature: "以高速和国道为主，距离仍长；莎车只能短停，不建议拖到夜间进喀什。",
-    roadNames: ["G3012吐和高速", "莎车连接线", "喀什入城道路"],
-    alerts: ["莎车短停", "避开夜路", "办边防证"],
-    logistics: "和田/墨玉出发前满油，抵达喀什后确认边境通行证和 D8 早餐。",
-    photo: "莎车老城或叶尔羌汗王陵短停，晚上喀什古城适合正式团建晚餐。",
-    roadLabels: [
-      { text: "G3012 南疆高速", lat: 38.0, lng: 78.2 },
-      { text: "莎车短停", lat: 38.41, lng: 77.25 },
-      { text: "喀什入城", lat: 39.35, lng: 76.25 },
-    ],
-  },
-  d8: {
-    theme: "帕米尔高原 · 湖泊雪峰",
-    depart: "07:00 前",
-    roadFeature: "G314中巴友谊公路海拔上升明显，白沙湖、喀湖方向天气变化很快。",
-    roadNames: ["G314中巴友谊公路", "白沙湖路段", "喀拉库勒湖高原路"],
-    alerts: ["边防证", "海拔3600米", "少跑跳"],
-    logistics: "早餐尽量提前；证件随身，车上备厚外套、热水和葡萄糖。",
-    photo: "白沙湖、喀拉库勒湖、慕士塔格峰方向是全线最适合集体大片的一天。",
-    roadLabels: [
-      { text: "G314 中巴友谊公路", lat: 38.93, lng: 75.55 },
-      { text: "白沙湖", lat: 38.35, lng: 75.08 },
-      { text: "喀拉库勒湖 约3600m", lat: 38.44, lng: 75.06 },
-    ],
-  },
-  d9: {
-    theme: "返程还车 · 航班日",
-    depart: "按航班",
-    roadFeature: "市区到机场为主，重点是还车、行李和返程节奏。",
-    roadNames: ["喀什市区道路", "喀什机场路", "喀什 → 上海航班"],
-    alerts: ["还车拍照", "预留安检", "确认押金"],
-    logistics: "还车时确认油量、车损、违章押金规则，票据和照片统一留存。",
-    photo: "喀什机场或酒店门口简单合影即可。",
-    roadLabels: [{ text: "航班：喀什 → 上海", lat: 35.4, lng: 98.5 }],
-  },
-};
-
-days.forEach((day) => Object.assign(day, routeDetails[day.id]));
+const tabsEl = document.querySelector("#day-tabs");
+const overviewEl = document.querySelector("#overview-grid");
+const globalChecksEl = document.querySelector("#global-checks");
+const toastEl = document.querySelector("#toast");
+const dayPhoto = document.querySelector("#day-photo");
 
 const map = L.map("route-map", {
   scrollWheelZoom: false,
@@ -369,57 +324,83 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 }).addTo(map);
 
 const layerGroup = L.layerGroup().addTo(map);
-const controls = document.querySelector("#map-controls");
-const selectedDay = document.querySelector("#selected-day");
-const dayList = document.querySelector("#day-list");
-const routeCache = new Map();
-let activeRenderId = 0;
 
-function renderControls() {
-  const all = document.createElement("button");
-  all.type = "button";
-  all.innerHTML = "<span>全线</span><small>D2-D8 自驾段</small>";
-  all.className = "is-active";
-  all.dataset.day = "all";
-  controls.append(all);
+function storageKey(dayId, field) {
+  return `xj-trip:${dayId}:${field}`;
+}
 
-  days.forEach((item) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.innerHTML = `<span>${item.day}</span><small>${item.distance}</small>`;
-    button.dataset.day = item.id;
-    controls.append(button);
-  });
+function showToast(message) {
+  toastEl.textContent = message;
+  toastEl.classList.add("is-visible");
+  window.setTimeout(() => toastEl.classList.remove("is-visible"), 1800);
+}
 
-  controls.addEventListener("click", (event) => {
-    if (!(event.target instanceof HTMLButtonElement)) return;
-    controls.querySelectorAll("button").forEach((button) => {
-      button.classList.toggle("is-active", button === event.target);
-    });
-    renderMap(event.target.dataset.day);
-  });
+function renderTabs() {
+  tabsEl.innerHTML = days
+    .map(
+      (day) => `
+        <button class="day-tab ${day.id === activeDayId ? "is-active" : ""}" type="button" data-day="${day.id}">
+          <b>${day.day}</b>
+          <span>${day.date}<small>${day.distance} · ${day.driveTime}</small></span>
+        </button>
+      `,
+    )
+    .join("");
+}
+
+function listItems(items) {
+  return items.map((item) => `<li>${item}</li>`).join("");
+}
+
+function renderDayContent(day) {
+  document.querySelector("#board-day").textContent = `${day.day} · ${day.date} · ${day.transport}`;
+  document.querySelector("#board-title").textContent = day.title;
+  document.querySelector("#board-subtitle").textContent = day.subtitle;
+  document.querySelector("#metric-distance").textContent = day.distance;
+  document.querySelector("#metric-drive").textContent = day.driveTime;
+  document.querySelector("#metric-depart").textContent = day.depart;
+  document.querySelector("#metric-risk").textContent = day.risk;
+
+  dayPhoto.src = day.photo.url;
+  dayPhoto.alt = `${day.day} ${day.photo.title}`;
+  dayPhoto.onerror = () => {
+    if (dayPhoto.src !== fallbackPhoto) dayPhoto.src = fallbackPhoto;
+  };
+  document.querySelector("#photo-tag").textContent = day.photo.tag;
+  document.querySelector("#photo-title").textContent = day.photo.title;
+  document.querySelector("#photo-desc").textContent = day.photo.desc;
+  document.querySelector("#photo-credit").textContent = day.photo.credit;
+
+  document.querySelector("#road-tags").innerHTML = day.roadNames.map((road) => `<span>${road}</span>`).join("");
+  document.querySelector("#route-steps").innerHTML = listItems(day.steps);
+  document.querySelector("#road-conditions").innerHTML = listItems(day.roadConditions);
+  document.querySelector("#day-notes").innerHTML = listItems(day.notes);
+  document.querySelector("#scenery-list").innerHTML = listItems(day.scenery);
+
+  const statusEl = document.querySelector("#day-status");
+  const noteEl = document.querySelector("#day-note");
+  statusEl.value = localStorage.getItem(storageKey(day.id, "status")) || "未确认";
+  noteEl.value = localStorage.getItem(storageKey(day.id, "note")) || "";
 }
 
 async function getRoadGeometry(day) {
   const fallback = day.route.map((point) => [point.lat, point.lng]);
-  if (day.transport.includes("航班")) return fallback;
+  if (day.route.length < 2) return fallback;
   if (routeCache.has(day.id)) return routeCache.get(day.id);
 
   const coords = day.route.map((point) => `${point.lng},${point.lat}`).join(";");
   const url = `https://router.project-osrm.org/route/v1/driving/${coords}?overview=full&geometries=geojson`;
   const controller = new AbortController();
-  const timer = window.setTimeout(() => controller.abort(), 10000);
+  const timer = window.setTimeout(() => controller.abort(), 9000);
 
   try {
     const response = await fetch(url, { signal: controller.signal });
     const data = await response.json();
-    if (data.code !== "Ok" || !data.routes?.[0]?.geometry?.coordinates) {
-      routeCache.set(day.id, fallback);
-      return fallback;
-    }
-    const geometry = data.routes[0].geometry.coordinates.map(([lng, lat]) => [lat, lng]);
-    routeCache.set(day.id, geometry);
-    return geometry;
+    const geometry = data.routes?.[0]?.geometry?.coordinates;
+    if (data.code !== "Ok" || !geometry) throw new Error("No route geometry");
+    const mapped = geometry.map(([lng, lat]) => [lat, lng]);
+    routeCache.set(day.id, mapped);
+    return mapped;
   } catch {
     routeCache.set(day.id, fallback);
     return fallback;
@@ -428,180 +409,161 @@ async function getRoadGeometry(day) {
   }
 }
 
-function renderSelectedDay(day, isAll = false) {
-  if (isAll) {
-    selectedDay.innerHTML = `
-      <div class="route-brief">
-        <div class="route-brief__eyebrow">全线预览</div>
-        <h3>新疆自驾段：S101 + 独库 + 沙漠公路 + 帕米尔</h3>
-        <div class="brief-metrics">
-          <span><b>约 2,900 km</b><small>自驾里程</small></span>
-          <span><b>约 45 h</b><small>纯驾驶</small></span>
-          <span><b>D2-D8</b><small>地图聚焦</small></span>
-        </div>
-        <p>当前仅展示新疆自驾段，方便查看每天路线；D1/D9 航班段可单独点击查看。</p>
-        <div class="road-tags">
-          <span>S101国防公路</span><span>G217独库公路</span><span>G580阿和沙漠公路</span><span>G314中巴友谊公路</span>
-        </div>
-      </div>
-    `;
-    return;
-  }
-
-  selectedDay.innerHTML = `
-    <div class="route-brief">
-      <div class="route-brief__eyebrow">${day.day} · ${day.date} · ${day.theme}</div>
-      <h3>${day.title}</h3>
-      <div class="brief-metrics">
-        <span><b>${day.distance}</b><small>预计里程</small></span>
-        <span><b>${day.driveTime}</b><small>驾驶时间</small></span>
-        <span><b>${day.depart}</b><small>建议出发</small></span>
-      </div>
-      <p>${day.roadFeature}</p>
-      <div class="road-tags">${day.roadNames.map((road) => `<span>${road}</span>`).join("")}</div>
-      <dl class="route-facts">
-        <div><dt>住宿</dt><dd>${day.stay}</dd></div>
-        <div><dt>补给</dt><dd>${day.logistics}</dd></div>
-        <div><dt>拍摄</dt><dd>${day.photo}</dd></div>
-      </dl>
-    </div>
-  `;
-}
-
 function addRoadLabels(day, color) {
-  day.roadLabels.forEach((label) => {
-    const marker = L.marker([label.lat, label.lng], {
+  day.labels.forEach((label) => {
+    L.marker([label.lat, label.lng], {
       interactive: false,
       icon: L.divIcon({
         className: "road-label",
         html: `<span style="--label-color:${color}">${label.text}</span>`,
       }),
-    });
-    marker.addTo(layerGroup);
+    }).addTo(layerGroup);
   });
 }
 
-async function renderMap(dayId = "all") {
+async function renderMap(day) {
   const renderId = ++activeRenderId;
   layerGroup.clearLayers();
-  const visibleDays =
-    dayId === "all" ? days.filter((item) => !item.transport.includes("航班")) : days.filter((item) => item.id === dayId);
-  const bounds = [];
-  const dayGeometries = await Promise.all(
-    visibleDays.map(async (day) => ({
-      day,
-      geometry: await getRoadGeometry(day),
-    })),
-  );
 
+  const color = colors[days.findIndex((item) => item.id === day.id) % colors.length];
+  const geometry = await getRoadGeometry(day);
   if (renderId !== activeRenderId) return;
 
-  dayGeometries.forEach(({ day }, index) => {
-    day.route.forEach((point) => bounds.push([point.lat, point.lng]));
-    if (dayId !== "all") {
-      renderSelectedDay(day);
-    } else if (index === 0) {
-      renderSelectedDay(day, true);
-    }
+  const bounds = day.route.map((point) => [point.lat, point.lng]);
+  if (geometry.length > 1) {
+    const line = L.polyline(geometry, {
+      color,
+      weight: 6,
+      opacity: 0.9,
+    }).addTo(layerGroup);
+    line.bindPopup(`
+      <strong>${day.day} ${day.title}</strong><br>
+      距离：${day.distance}｜驾驶：${day.driveTime}<br>
+      主要道路：${day.roadNames.join(" / ")}
+    `);
+    geometry.forEach((coord) => bounds.push(coord));
+  }
+
+  day.route.forEach((point, index) => {
+    const marker = L.circleMarker([point.lat, point.lng], {
+      radius: index === 0 || index === day.route.length - 1 ? 8 : 6,
+      color: "#fff",
+      weight: 2,
+      fillColor: color,
+      fillOpacity: 1,
+    }).addTo(layerGroup);
+    marker.bindPopup(`<strong>${point.name}</strong><br>${day.day} · ${day.title}`);
   });
 
-  dayGeometries.forEach(({ day, geometry }) => {
-    const color = colors[days.findIndex((item) => item.id === day.id) % colors.length];
-
-    if (geometry.length > 1) {
-      const line = L.polyline(geometry, {
-        color,
-        weight: day.id === "d1" || day.id === "d9" ? 2 : 5,
-        opacity: day.id === "d1" || day.id === "d9" ? 0.45 : 0.85,
-        dashArray: day.transport.includes("航班") ? "8 8" : null,
-      }).addTo(layerGroup);
-      line.bindPopup(`
-        <strong>${day.day} ${day.title}</strong><br>
-        ${day.distance} · ${day.driveTime}<br>
-        主要道路：${day.roadNames.join(" / ")}
-      `);
-    }
-
-    day.route.forEach((point, pointIndex) => {
-      const marker = L.circleMarker([point.lat, point.lng], {
-        radius: pointIndex === 0 || pointIndex === day.route.length - 1 ? 7 : 5,
-        color: "#ffffff",
-        weight: 2,
-        fillColor: color,
-        fillOpacity: 1,
-      }).addTo(layerGroup);
-      marker.bindPopup(`<strong>${point.name}</strong><br>${day.day} · ${day.title}`);
-    });
-
-    addRoadLabels(day, color);
-  });
-
-  if (bounds.length > 0) {
-    map.fitBounds(bounds, { padding: [34, 34] });
+  addRoadLabels(day, color);
+  if (bounds.length === 1) {
+    map.setView(bounds[0], 10);
+  } else {
+    map.fitBounds(bounds, { padding: [36, 36] });
   }
 }
 
-function listItems(items) {
-  return items.map((item) => `<li>${item}</li>`).join("");
+function setActiveDay(dayId) {
+  activeDayId = dayId;
+  const day = days.find((item) => item.id === dayId) || days[1];
+  renderTabs();
+  renderDayContent(day);
+  renderMap(day);
 }
 
-function tagItems(items) {
-  return items.map((item) => `<span>${item}</span>`).join("");
-}
-
-function renderDays() {
-  dayList.innerHTML = days
+function renderOverview() {
+  overviewEl.innerHTML = days
     .map(
       (day) => `
-        <article class="day-card" id="${day.id}">
-          <div class="day-card__head">
-            <div class="day-badge">
-              <span>${day.day}</span>
-              <small>${day.date}</small>
-            </div>
-            <div class="day-title">
-              <h3>${day.title}</h3>
-              <p>${day.transport} · 住宿：${day.stay}</p>
-            </div>
-            <div class="day-metrics" aria-label="${day.day} 行程数据">
-              <span class="pill">${day.distance}</span>
-              <span class="pill">${day.driveTime}</span>
-              <span class="pill">${day.theme}</span>
-            </div>
-          </div>
-          <div class="day-roadline">
-            <span>主要道路</span>
-            <div>${tagItems(day.roadNames)}</div>
-          </div>
-          <div class="day-card__body">
-            <div class="info-block">
-              <h4>当天安排</h4>
-              <ul>${listItems(day.schedule)}</ul>
-              <a class="map-link" href="${day.mapLink}" target="_blank" rel="noreferrer">打开导航参考</a>
-            </div>
-            <div class="info-block">
-              <h4>主要停靠点</h4>
-              <ul>${listItems(day.stops)}</ul>
-            </div>
-            <div class="info-block">
-              <h4>驾驶及注意事项</h4>
-              <ul>${listItems(day.notes)}</ul>
-            </div>
-            <div class="info-block">
-              <h4>路况特点与补给</h4>
-              <ul>
-                <li>${day.roadFeature}</li>
-                <li>${day.logistics}</li>
-                <li>${day.photo}</li>
-              </ul>
-            </div>
-          </div>
+        <article class="overview-card">
+          <header>
+            <h3>${day.day} ${day.date}</h3>
+            <strong>${day.risk}</strong>
+          </header>
+          <p><strong>${day.title}</strong></p>
+          <p>${day.distance} · ${day.driveTime} · ${day.theme}</p>
         </article>
       `,
     )
     .join("");
 }
 
-renderControls();
-renderDays();
-renderMap();
+function renderGlobalChecks() {
+  const checks = [
+    "每车至少 2 名驾驶员，驾驶证和身份证随身。",
+    "租车订单、保险、救援电话、车辆照片同步到团建群。",
+    "D3 前一晚和当天早晨查独库公路管制。",
+    "D6 沙漠公路前满油、备水、下载离线地图。",
+    "D8 前确认边境管理区通行证和高原保暖装备。",
+  ];
+
+  globalChecksEl.innerHTML = checks
+    .map((check, index) => {
+      const key = `xj-trip:global-check:${index}`;
+      const checked = localStorage.getItem(key) === "1" ? "checked" : "";
+      return `
+        <label class="check-item">
+          <input type="checkbox" data-check-key="${key}" ${checked} />
+          <span>${check}</span>
+        </label>
+      `;
+    })
+    .join("");
+}
+
+function currentDay() {
+  return days.find((day) => day.id === activeDayId) || days[1];
+}
+
+async function copySummary() {
+  const day = currentDay();
+  const text = `${day.day} ${day.date}｜${day.title}
+距离：${day.distance}
+驾驶时间：${day.driveTime}
+建议出发：${day.depart}
+住宿：${day.stay}
+主要道路：${day.roadNames.join(" / ")}
+路况：${day.roadConditions.join(" ")}
+注意：${day.notes.join(" ")}`;
+
+  try {
+    await navigator.clipboard.writeText(text);
+    showToast("今日简报已复制");
+  } catch {
+    const temp = document.createElement("textarea");
+    temp.value = text;
+    document.body.append(temp);
+    temp.select();
+    document.execCommand("copy");
+    temp.remove();
+    showToast("今日简报已复制");
+  }
+}
+
+tabsEl.addEventListener("click", (event) => {
+  const button = event.target.closest("button[data-day]");
+  if (!button) return;
+  setActiveDay(button.dataset.day);
+});
+
+document.querySelector("#day-status").addEventListener("change", (event) => {
+  localStorage.setItem(storageKey(activeDayId, "status"), event.target.value);
+  showToast("确认状态已保存");
+});
+
+document.querySelector("#day-note").addEventListener("input", (event) => {
+  localStorage.setItem(storageKey(activeDayId, "note"), event.target.value);
+});
+
+globalChecksEl.addEventListener("change", (event) => {
+  if (!event.target.matches("input[type='checkbox']")) return;
+  localStorage.setItem(event.target.dataset.checkKey, event.target.checked ? "1" : "0");
+});
+
+document.querySelector("#copy-summary").addEventListener("click", copySummary);
+document.querySelector("#print-page").addEventListener("click", () => window.print());
+
+renderTabs();
+renderOverview();
+renderGlobalChecks();
+setActiveDay(activeDayId);
